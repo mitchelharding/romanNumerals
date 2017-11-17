@@ -1,24 +1,38 @@
 //backend logic:
-var translator = function(userIn){
-  if (userIn % 1000 === 0){
-   return userIn[0];
- } else {
-   return false;
- }
-};
+var romanMatrix = [
+  [1000, 'M'],
+  [900, 'CM'],
+  [500, 'D'],
+  [400, 'CD'],
+  [100, 'C'],
+  [90, 'XC'],
+  [50, 'L'],
+  [40, 'XL'],
+  [10, 'X'],
+  [9, 'IX'],
+  [5, 'V'],
+  [4, 'IV'],
+  [1, 'I']
+];
+
+function convertToRoman(num) {
+  if (num === 0) {
+    return '';
+  }
+  for (var i = 0; i < romanMatrix.length; i++) {
+    if (num >= romanMatrix[i][0]) {
+      return romanMatrix[i][1] + convertToRoman(num - romanMatrix[i][0]);
+    }
+  }
+}
 
 //User interface logic:
 $(document).ready(function(){
   $("form#romanTranslator").submit(function(event){
     event.preventDefault();
-    var userIn = $("input#userInput").val();
-    var result = translator(userIn);
-
-    if (!result){
-      $(".result").text(result);
-    } else if (result === "1"){
-      $(".result").text("M");
-    }
+    var num = parseInt($("input#userInput").val());
+    var result = convertToRoman(num);
+    $(".result").text(result);
 
   });
 });
