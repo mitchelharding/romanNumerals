@@ -1,19 +1,9 @@
 //backend logic:
 var translator = function(userIn){
   if (userIn % 1000 === 0){
-    var number = userIn.slice();
-    return number[0];
- } else if (userIn % 100 === 0){
-   var number = userIn.slice();
-   return number[0];
- } else if (userIn % 10 === 0){
-   var number = userIn.slice();
-   return number[0];
- } else if (userIn % 5 === 0){
-   var number = userIn.slice();
-   return number[0];
+   return userIn[0];
  } else {
-   return userIn;
+   return false;
  }
 };
 
@@ -23,7 +13,12 @@ $(document).ready(function(){
     event.preventDefault();
     var userIn = $("input#userInput").val();
     var result = translator(userIn);
-    $(".result").text(result);
+
+    if (!result){
+      $(".result").text(result);
+    } else if (result === "1"){
+      $(".result").text("M");
+    }
 
   });
 });
