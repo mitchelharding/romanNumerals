@@ -1,7 +1,17 @@
 //backend logic:
 var translator = function(userIn){
-  if (userIn.match(/[0-9]/i)){
-   return true;
+  if (userIn % 1000 === 0){
+    var number = userIn.slice();
+    return number[0];
+ } else if (userIn % 100 === 0){
+   var number = userIn.slice();
+   return number[0];
+ } else if (userIn % 10 === 0){
+   var number = userIn.slice();
+   return number[0];
+ } else if (userIn % 5 === 0){
+   var number = userIn.slice();
+   return number[0];
  } else {
    return userIn;
  }
